@@ -36,17 +36,31 @@ def get_movies(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, IsTheater])
 def create_show(request):
-    data = request.data.copy()
-    data['available_seats'] = data.get('total_seats')
+    try:
+        data = request.data.copy()
 
-    serializer = ShowSerializer(data=data)
+        # ✅ Convert and validate numbers
+        movie_id = int(data.get('movie'))
+        total_seats = int(data.get('total_seats'))
+        price = float(data.get('price'))
 
-    if serializer.is_valid():
-        serializer.save(theater=request.user)
-        return Response(serializer.data, status=201)
+        if total_seats <= 0:
+            return Response({"error": "Seats must be > 0"}, status=400)
 
-    return Response(serializer.errors, status=400)
+        # ✅ Set available seats automatically
+        data['available_seats'] = total_seats
 
+        serializer = ShowSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save(theater=request.user)
+            return Response(serializer.data, status=201)
+
+        return Response(serializer.errors, status=400)
+
+    except Exception as e:
+        print("CREATE SHOW ERROR:", str(e))  # 👈 check Render logs
+        return Response({"error": "Server error"}, status=500)
 
 # 📃 GET SHOWS BY MOVIE
 @api_view(['GET'])
