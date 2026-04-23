@@ -1,0 +1,88 @@
+# =========================
+# 🔐 ENV FILES (IMPORTANT)
+# =========================
+.env
+.env.*
+*.env
+
+# =========================
+# 🐍 PYTHON / DJANGO
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.log
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Django static/media (optional)
+staticfiles/
+media/
+
+# Migrations (optional)
+# Remove if you want to keep migrations
+**/migrations/*
+!**/migrations/__init__.py
+
+# =========================
+# ⚛️ NODE / REACT (VITE)
+# =========================
+node_modules/
+dist/
+build/
+*.local
+
+# Vite cache
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# 🧪 TEST / CACHE
+# =========================
+.pytest_cache/
+coverage/
+htmlcov/
+
+# =========================
+# 🧠 IDE / EDITOR
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# 🖥 OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# 🔐 SECRET FILES
+# =========================
+*.pem
+*.key
+*.crt
+
+# =========================
+# 🐳 DOCKER (optional)
+# =========================
+docker-compose.override.yml
+
+# =========================
+# 📦 BUILD FILES
+# =========================
+*.gz
+*.zip
+*.tar
+*.tgz
